@@ -1,0 +1,9 @@
+<h1>All Trucks</h1>
+
+<ul id="trucks">
+  <% @trucks.each do |truck| %>
+    <li>
+      <%= link_to truck.name, truck_path(truck) %>
+    </li>
+  <% end %>
+</ul>

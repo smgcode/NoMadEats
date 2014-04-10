@@ -1,3 +1,7 @@
 <h1><%= @truck.name %></h1>
 <p><%= @truck.address %></p>
 <%= link_to "<< Back to Truck List", trucks_path %>
+<br>
+<%= link_to "Delete truck", truck_path(@truck), method: :delete, data: {confirm: "Really delete the article?"} %>
+<br>
+<%= link_to "edit", edit_truck_path(@truck) %>

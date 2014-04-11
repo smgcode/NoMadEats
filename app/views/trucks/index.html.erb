@@ -1,12 +1,63 @@
-<h1>All Trucks</h1>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">NoMadEats</a>
+    </div>
+  </div>
+</div>
 
-<ul id="trucks">
-  <% @trucks.each do |truck| %>
-    <li>
-      <%= link_to truck.name, truck_path(truck) %>
-    </li>
-  <% end %>
-</ul>
+<div class="jumbotron">
+  <div class="container">
+		<div class="row">
+	    <div class="col-md-12">
+        <h1>San Francisco<br>Food Truck Finder</h1>
+		    <p>Looking for meals on wheels?</p>
+	    </div>
+    </div>
+		<div class="row">
+	    <div class="col-md-4">
+		    <p><input type="text" class="form-control" placeholder="Enter an address"></p>
+		    <p><a class="btn btn-primary btn-lg" role="button">Find Trucks »</a></p>
+	    </div>
+    </div>
+  </div>
+</div>
 
-<p>Can't find your truck?<br>
-<%= link_to "Create New Truck", new_truck_path, class: 'new_truck' %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Trucks</h2>
+      <p>
+      	
+				<ul id="trucks">
+				  <% @trucks.each do |truck| %>
+				    <li>
+				      <%= link_to truck.name, truck_path(truck) %>
+				    </li>
+				  <% end %>
+				</ul>
+      </p>
+    </div>
+    <div class="col-md-4">
+      <h2>Can't find a truck?</h2>
+      <p>
+				<%= link_to "Add truck »", new_truck_path, class: 'new_truck btn btn-default' %>
+			</p>
+   </div>
+    <div class="col-md-4">
+      <h2>Recent Searches</h2>
+    </div>
+  </div>
+
+  <hr>
+
+  <footer>
+    <p><a href="http://www.seangee.com/" style="text-decoration: none;">© Sean Gee 2014</a></p>
+  </footer>
+</div> 

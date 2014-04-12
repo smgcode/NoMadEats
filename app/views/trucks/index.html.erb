@@ -52,6 +52,13 @@
    </div>
     <div class="col-md-4">
       <h2>Recent Searches</h2>
+				<ul id="searches">
+				  <% @searches.each do |query| %>
+				    <li>
+				      <p><%= query.search %></p>
+				    </li>
+				  <% end %>
+				</ul>
     </div>
   </div>
 

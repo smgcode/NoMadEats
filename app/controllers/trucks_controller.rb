@@ -2,6 +2,7 @@ class TrucksController < ApplicationController
 
 	def index
 		@trucks = Truck.all
+    @searches = TruckSearch.all
 	end
 
 	def show

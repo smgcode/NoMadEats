@@ -14,3 +14,5 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require foodtruckfinder
+//= require_tree ./models

@@ -1,0 +1,8 @@
+<h3>Index</h3>
+<ul>
+	<% trucks.each(function (truck) { %>
+		<li><%= truck.get("address") %></li>
+	<% }) %>
+</ul>
+
+<button id="refresh" >Refresh</button>

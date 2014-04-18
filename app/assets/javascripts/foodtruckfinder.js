@@ -4,12 +4,15 @@ window.FoodTruckFinder = {
   Views: {},
 
   initialize: function () {
-  	var view = new FoodTruckFinder.Views.TrucksIndex({
+  	var indexView = new FoodTruckFinder.Views.TrucksIndex({
   		collection: FoodTruckFinder.Collections.trucks,
   	});
 
   	FoodTruckFinder.Collections.trucks.fetch();
-  	$("body").append(view.render().$el);
+  	$("body").append(indexView.render().$el);
+
+  	var newView = new FoodTruckFinder.Views.TrucksNew();
+  	$("body").append(newView.render().$el);
   }
 };
 

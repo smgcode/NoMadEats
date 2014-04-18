@@ -5,11 +5,16 @@ window.FoodTruckFinder.Views.TrucksIndex = Backbone.View.extend({
   	"click button#refresh": "refresh"
   },
 
+  initialize: function(options) {
+    this.listenTo(
+    	this.collection,
+    	"sync add",
+    	this.render
+    );
+  },
+
   refresh: function() {
-	  var view = this;
-    this.collection.fetch({
-    	success: function () { view.render(); }
-    });
+    this.collection.fetch();
   },
 
   render: function() {

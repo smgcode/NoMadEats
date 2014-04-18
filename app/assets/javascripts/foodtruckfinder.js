@@ -8,11 +8,8 @@ window.FoodTruckFinder = {
   		collection: FoodTruckFinder.Collections.trucks,
   	});
 
-  	FoodTruckFinder.Collections.trucks.fetch({
-  		success: function() {
-		  	$("body").append(view.render().$el);
-  		}
-  	});
+  	FoodTruckFinder.Collections.trucks.fetch();
+  	$("body").append(view.render().$el);
   }
 };
 

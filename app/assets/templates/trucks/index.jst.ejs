@@ -1,13 +1,23 @@
-<h3>Index</h3>
-<button id="refresh" >Refresh</button>
-<ul>
-	<% trucks.each(function (truck) { %>
-		<li>
-		  <a href="#/trucks/<%= truck.get("id") %>">
-		    <%= truck.get("name") %>
-		  </a>
-		</li>
-	<% }) %>
-</ul>
+<div class="row">
+  <div class="col-md-4">
+    <h2>Trucks</h2>
+		<ul>
+			<% trucks.each(function (truck) { %>
+				<li>
+				  <a href="#/trucks/<%= truck.get("id") %>">
+				    <%= truck.get("name") %>
+				  </a>
+				</li>
+			<% }) %>
+		</ul>
+  </div>
+  <div class="col-md-4">
+    <h2>Can't find a truck?</h2>
+    <p>
+	    <a class="btn btn-default" href="#/trucks/new">Add truck »</a>
+		</p>
+ </div>
+  <div class="col-md-4">
+  </div>
+</div>
 
-<a href="#/trucks/new"> New Truck</a>

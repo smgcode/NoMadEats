@@ -1,17 +1,24 @@
 window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   routes: {
-  	"": "trucksIndex",
+  	"": "content",
   	"trucks/new": "trucksNew",
   	"trucks/:id": "trucksShow"
   },
 
-  trucksIndex: function () {
-  	var indexView = new FoodTruckFinder.Views.TrucksIndex({
+  content: function () {
+  	var truckSearchesIndexView = new FoodTruckFinder.Views.TruckSearchesIndex({
+  		collection: FoodTruckFinder.Collections.truckSearches,
+  	});
+
+  	FoodTruckFinder.Collections.truckSearches.fetch();
+  	$("#search-index").html(truckSearchesIndexView.render().$el);
+
+  	var trucksIndexView = new FoodTruckFinder.Views.TrucksIndex({
   		collection: FoodTruckFinder.Collections.trucks,
   	});
 
   	FoodTruckFinder.Collections.trucks.fetch();
-  	$("#truck-index").html(indexView.render().$el);
+  	$("#truck-index").html(trucksIndexView.render().$el);
   },
 
   trucksNew: function () {

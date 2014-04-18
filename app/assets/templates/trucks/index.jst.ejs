@@ -1,8 +1,13 @@
 <h3>Index</h3>
+<button id="refresh" >Refresh</button>
 <ul>
 	<% trucks.each(function (truck) { %>
-		<li><%= truck.get("name") %></li>
+		<li>
+		  <a href="#/trucks/<%= truck.get("id") %>">
+		    <%= truck.get("name") %>
+		  </a>
+		</li>
 	<% }) %>
 </ul>
 
-<button id="refresh" >Refresh</button>
+<a href="#/trucks/new"> New Truck</a>

@@ -20,6 +20,7 @@ window.FoodTruckFinder.Views.TrucksNew = Backbone.View.extend({
 		newTruck.save({}, {
 			success: function (){
 				FoodTruckFinder.Collections.trucks.add(newTruck);
+				Backbone.history.navigate("", { trigger: true});
 			}
 		});
 	}

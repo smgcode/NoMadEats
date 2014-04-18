@@ -13,10 +13,6 @@ window.FoodTruckFinder.Views.TrucksIndex = Backbone.View.extend({
     );
   },
 
-  refresh: function() {
-    this.collection.fetch();
-  },
-
   render: function() {
   	var renderedContent = this.template({
   		trucks: this.collection
@@ -24,5 +20,9 @@ window.FoodTruckFinder.Views.TrucksIndex = Backbone.View.extend({
   	this.$el.html( renderedContent );
 
   	return this;
+  },
+
+  refresh: function() {
+    this.collection.fetch();
   }
 });

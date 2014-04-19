@@ -14,7 +14,6 @@ window.FoodTruckFinder.Views.TrucksNew = Backbone.View.extend({
 
 	submit: function (event) {
 		event.preventDefault();
-    
 		var params = $(event.currentTarget).serializeJSON()["truck"];
 		var newTruck = new FoodTruckFinder.Models.Truck(params);
 		newTruck.save({}, {

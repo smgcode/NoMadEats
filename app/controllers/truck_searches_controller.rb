@@ -17,7 +17,7 @@ class TruckSearchesController < ApplicationController
       # redirect_to truck_path
       render :json => @truck_search
     else
-      render :json => @truck_sesarch.errors, :status => :unporcessable_entity
+      render :json => @truck_search.errors, :status => :unporcessable_entity
     end
   end
 

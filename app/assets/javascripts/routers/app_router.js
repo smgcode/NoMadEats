@@ -6,19 +6,17 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   },
 
   content: function () {
-  	var truckSearchesIndexView = new FoodTruckFinder.Views.TruckSearchesIndex({
-  		collection: FoodTruckFinder.Collections.truckSearches,
-  	});
+  	this.trucksIndex();
+    this.truckSearchesIndex();
+    this.truckSearchesNew();
+  },
 
-  	FoodTruckFinder.Collections.truckSearches.fetch();
-  	$("#search-index").html(truckSearchesIndexView.render().$el);
-
-  	var trucksIndexView = new FoodTruckFinder.Views.TrucksIndex({
+  trucksIndex: function () {
+  	var indexView = new FoodTruckFinder.Views.TrucksIndex({
   		collection: FoodTruckFinder.Collections.trucks,
   	});
-
   	FoodTruckFinder.Collections.trucks.fetch();
-  	$("#truck-index").html(trucksIndexView.render().$el);
+  	$("#truck-index").html(indexView.render().$el);
   },
 
   trucksNew: function () {
@@ -28,10 +26,22 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
 
   trucksShow: function (id) {
   	var model = FoodTruckFinder.Collections.trucks.getOrFetch(id);
-
   	var showView = new FoodTruckFinder.Views.TrucksShow({
   		model: model
   	});
   	$("#truck-index").html(showView.render().$el);
+  },
+
+  truckSearchesIndex: function() {
+  	var indexView = new FoodTruckFinder.Views.TruckSearchesIndex({
+  		collection: FoodTruckFinder.Collections.truckSearches,
+  	});
+  	FoodTruckFinder.Collections.truckSearches.fetch();
+  	$("#search-index").html(indexView.render().$el);
+  },
+
+  truckSearchesNew: function() {
+  	var newView = new FoodTruckFinder.Views.TruckSearchesNew();
+  	$("#new-search").html(newView.render().$el);
   }
 });

@@ -1,10 +1,6 @@
 window.FoodTruckFinder.Views.TruckSearchesIndex = Backbone.View.extend({
   template: JST["truck_searches/index"],
 
-  // events: {
-  // 	"click button#refresh": "refresh"
-  // },
-
   initialize: function(options) {
     this.listenTo(
     	this.collection,
@@ -21,8 +17,4 @@ window.FoodTruckFinder.Views.TruckSearchesIndex = Backbone.View.extend({
 
   	return this;
   }
-
-  // refresh: function() {
-  //   this.collection.fetch();
-  // }
 });

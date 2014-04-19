@@ -1,6 +1,21 @@
 window.FoodTruckFinder.Collections.TruckSearches = Backbone.Collection.extend({
   url: "/truck_searches",
-  model: FoodTruckFinder.Models.TruckSearch
+  model: FoodTruckFinder.Models.TruckSearch,
+
+  getOrFetch: function (id) {
+  	var model;
+  	var truck_searches = this;
+
+  	if (model = this.get(id)){
+  		return model;
+  	} else {
+  		model = new FoodTruckFinder.Models.TruckSearch({ id: id });
+  		model.fetch({
+  			success: function () { truckSearches.add(model) }
+  		});
+  		return model;
+  	}
+  }
 });
 
 window.FoodTruckFinder.Collections.truckSearches = new FoodTruckFinder.Collections.TruckSearches();

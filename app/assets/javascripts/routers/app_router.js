@@ -11,17 +11,11 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
     this.truckSearchesNew();
   },
 
-  trucksIndex: function () {
-  	var indexView = new FoodTruckFinder.Views.TrucksIndex({
-  		collection: FoodTruckFinder.Collections.trucks,
-  	});
-  	FoodTruckFinder.Collections.trucks.fetch();
-  	$("#truck-index").html(indexView.render().$el);
-  },
-
   trucksNew: function () {
   	var newView = new FoodTruckFinder.Views.TrucksNew();
   	$("#truck-index").html(newView.render().$el);
+    this.truckSearchesIndex();
+    this.truckSearchesNew();
   },
 
   trucksShow: function (id) {
@@ -30,6 +24,16 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   		model: model
   	});
   	$("#truck-index").html(showView.render().$el);
+    this.truckSearchesIndex();
+    this.truckSearchesNew();
+  },
+
+  trucksIndex: function () {
+  	var indexView = new FoodTruckFinder.Views.TrucksIndex({
+  		collection: FoodTruckFinder.Collections.trucks,
+  	});
+  	FoodTruckFinder.Collections.trucks.fetch();
+  	$("#truck-index").html(indexView.render().$el);
   },
 
   truckSearchesIndex: function() {

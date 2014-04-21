@@ -1,7 +1,7 @@
 class TrucksController < ApplicationController
 
 	def index
-		@trucks = Truck.all
+    @trucks = Truck.where(:truck_search_id => params[:truck_search_id])
     render :json => @trucks
 	end
 

@@ -3,6 +3,7 @@ window.FoodTruckFinder.Views.TruckSearchesShow = Backbone.View.extend({
 
   initialize: function (options) {
   	this.listenTo(this.model, "sync", this.render);
+    this.listenTo(this.model.trucks(), "sync", this.render);
   },
 
   render: function(){

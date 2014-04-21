@@ -4,9 +4,10 @@ window.FoodTruckFinder.Collections.TruckSearches = Backbone.Collection.extend({
 
   getOrFetch: function (id) {
   	var model;
-  	var truck_searches = this;
+  	var truckSearches = this;
 
   	if (model = this.get(id)){
+  		model.fetch();
   		return model;
   	} else {
   		model = new FoodTruckFinder.Models.TruckSearch({ id: id });

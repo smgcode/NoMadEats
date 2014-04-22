@@ -25,9 +25,9 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   },
 
   truckSearchShow: function (id) {
-  	var truckSearches = FoodTruckFinder.Collections.truckSearches.getOrFetch(id);
+  	var truckSearch = FoodTruckFinder.Collections.truckSearches.getOrFetch(id);
   	var showView = new FoodTruckFinder.Views.TruckSearchesShow({
-  		model: truckSearches
+  		model: truckSearch
   	});
   	$("#search-index").html(showView.render().$el);
   }

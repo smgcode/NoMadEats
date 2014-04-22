@@ -8,5 +8,14 @@ window.FoodTruckFinder.Models.TruckSearch = Backbone.Model.extend({
 	  	});
     }
     return this._trucks;
+  },
+
+  parse: function (jsonResp) {
+  	if(jsonResp.trucks){
+  		this.trucks().set(jsonResp.trucks);
+	  	delete jsonResp.trucks;
+  	}
+
+  	return jsonResp;
   }
 });

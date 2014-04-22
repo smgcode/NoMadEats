@@ -1,0 +1,1 @@
+json.(truck, :id, :truck_search_id, :name, :created_at, :updated_at)

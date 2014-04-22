@@ -1,0 +1,1 @@
+json.partial!("truck_searches/truck_search", :truck_search => @truck_search, :trucks => @trucks)

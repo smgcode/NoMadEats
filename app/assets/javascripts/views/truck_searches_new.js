@@ -15,13 +15,20 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	submit: function (event) {
 		event.preventDefault();
 		var params = $(event.currentTarget).serializeJSON()["truck_search"];
-		var newTruckSearch = new FoodTruckFinder.Models.TruckSearch(params);
-		newTruckSearch.save({}, {
-			success: function (){
-				FoodTruckFinder.Collections.truckSearches.add(newTruckSearch);
-				Backbone.history.navigate("", { trigger: true});
-			}
-		});
+		var search = this.collection.where(params);
+
+		// Search not included in our database
+		if (search.length == 0) {
+			var newTruckSearch = new FoodTruckFinder.Models.TruckSearch(params);
+			newTruckSearch.save({}, {
+				success: function () {
+					FoodTruckFinder.Collections.truckSearches.add(newTruckSearch);
+					Backbone.history.navigate("", { trigger: true});
+				}
+			});
+		} else {
+			
+		}
 	}
 
 });

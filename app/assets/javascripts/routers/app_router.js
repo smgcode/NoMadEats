@@ -13,14 +13,16 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
 
   truckSearchesIndex: function() {
   	var indexView = new FoodTruckFinder.Views.TruckSearchesIndex({
-  		collection: FoodTruckFinder.Collections.truckSearches,
+  		collection: FoodTruckFinder.Collections.truckSearches
   	});
   	FoodTruckFinder.Collections.truckSearches.fetch();
   	$("#search-index").html(indexView.render().$el);
   },
 
   truckSearchesNew: function() {
-  	var newView = new FoodTruckFinder.Views.TruckSearchesNew();
+  	var newView = new FoodTruckFinder.Views.TruckSearchesNew({
+      collection: FoodTruckFinder.Collections.truckSearches
+    });
   	$("#new-search").html(newView.render().$el);
   },
 

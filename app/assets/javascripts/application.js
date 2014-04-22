@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require backbone.googlemaps
 //= require foodtruckfinder
 //= require_tree ./models
 //= require_tree ./collections

@@ -1,20 +1,11 @@
-window.FoodTruckFinder.Views.TruckSearchesIndex = Backbone.View.extend({
-  template: JST["truck_searches/index"],
+window.FoodTruckFinder.Views.TruckMap = Backbone.View.extend({
 
-  initialize: function(options) {
-    this.listenTo(
-    	this.collection,
-    	"sync add",
-    	this.render
-    );
+  initialize: function (options) {
+  	// this.listenTo(this.model, "sync", this.render);
+   //  this.listenTo(this.model.trucks(), "sync remove", this.render);
   },
 
-  render: function() {
-  	var renderedContent = this.template({
-  		truck_searches: this.collection
-  	});
-  	this.$el.html( renderedContent );
-
+  render: function(){
     // Create Google map instance
     var places = new Backbone.GoogleMaps.LocationCollection([{
       title: "Off the Grid: 5M @ Fifth and Mina",
@@ -38,7 +29,5 @@ window.FoodTruckFinder.Views.TruckSearchesIndex = Backbone.View.extend({
         map: map
     });
     markerCollectionView.render();
-
-  	return this;
   }
 });

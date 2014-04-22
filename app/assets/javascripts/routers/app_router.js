@@ -6,9 +6,9 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   },
 
   content: function () {
-  	// this.trucksIndex();
     this.truckSearchesIndex();
     this.truckSearchesNew();
+    this.truckMapShow();
   },
 
   truckSearchesIndex: function() {
@@ -32,6 +32,11 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   		model: truckSearch
   	});
   	$("#search-index").html(showView.render().$el);
+  }, 
+
+  truckMapShow: function() {
+    var mapView = new FoodTruckFinder.Views.TruckMap({});
+    mapView.render();
   }
 
   // trucksNew: function () {

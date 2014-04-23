@@ -17,7 +17,6 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 		var params = $(event.currentTarget).serializeJSON()["truck_search"];
 		var search = this.collection.where(params);
 
-		// Search not included in our database
 		if (search.length == 0) {
 			var newTruckSearch = new FoodTruckFinder.Models.TruckSearch(params);
 			newTruckSearch.save({}, {
@@ -28,6 +27,11 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 			});
 		} else {
 			
+		}
+		// Call map's codeAddress
+		// should not be using prototype? Should make a model and add code address function there?
+		if (params.search.length != 0){
+			FoodTruckFinder.Views.TruckMap.prototype.codeAddress(params.search);
 		}
 	}
 

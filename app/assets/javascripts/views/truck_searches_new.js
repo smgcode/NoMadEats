@@ -32,11 +32,10 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 				success: function () {
 					FoodTruckFinder.Collections.truckSearches.add(newTruckSearch);
 					that.codeAddress(params.search);
-					Backbone.history.navigate("", { trigger: true});
 				}
 			});
 		} else {
-			// Update map with DB info
+			Backbone.history.navigate("truck_searches/" + prevSearch[0].get("id"), { trigger: true});
 		}
 	},
 
@@ -97,11 +96,13 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	    boundaries["west"] + "," +
 	    boundaries["south"] + "," + 
 	    boundaries["east"] + ")"; 
+    var truckSearchId = FoodTruckFinder.Collections.truckSearches.last().get("id")
+
 	  $.getJSON(sodaData, function(trucks){
 	    trucks.forEach( function(truck, idx){
 	    	truckItem["name"] = truck["applicant"];
 	      truckItem["address"] = truck["address"];
-	      truckItem["truck_search_id"] = FoodTruckFinder.Collections.truckSearches.last().get("id")
+	      truckItem["truck_search_id"] = truckSearchId
 
 	      var newTruck = new FoodTruckFinder.Models.Truck(truckItem)
 	      newTruck.save({}, {
@@ -110,7 +111,8 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	      	}
 	      })
 	    });
+	  }).done(function( json ) {
+		  Backbone.history.navigate("truck_searches/" + truckSearchId, { trigger: true});
 	  });
 	}
-
 });

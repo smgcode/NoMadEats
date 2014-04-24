@@ -5,6 +5,11 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   	"truck_searches/:id": "truckSearchShow"
   },
 
+  initialize: function(options) {
+    this.places = options.places,
+    this.map = options.map
+  },
+
   content: function () {
     this.truckSearchesIndex();
     this.truckSearchesNew();
@@ -21,7 +26,8 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
 
   truckSearchesNew: function() {
   	var newView = new FoodTruckFinder.Views.TruckSearchesNew({
-      collection: FoodTruckFinder.Collections.truckSearches
+      collection: FoodTruckFinder.Collections.truckSearches,
+      map: this.map
     });
   	$("#new-search").html(newView.render().$el);
   },
@@ -35,8 +41,11 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   }, 
 
   truckMapShow: function() {
-    var mapView = new FoodTruckFinder.Views.TruckMap({});
-    mapView.render();
+    var markerCollectionView = new Backbone.GoogleMaps.MarkerCollectionView({
+      collection: this.places,
+      map: this.map
+    });
+    markerCollectionView.render();
   }
 
   // trucksNew: function () {

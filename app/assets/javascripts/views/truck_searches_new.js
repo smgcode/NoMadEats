@@ -98,9 +98,9 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	    trucks.forEach( function(truck, idx){
 	    	truckItem["name"] = truck["applicant"];
 	      truckItem["address"] = truck["address"];
-	      // truckItem["facilitytype"] = truck["facilitytype"];
-	      // truckItem["fooditem"] = truck["fooditem"];
-	      // truckItem["status"] = truck["status"];
+	      truckItem["facilitytype"] = truck["facilitytype"];
+	      truckItem["fooditem"] = truck["fooditem"];
+	      truckItem["status"] = truck["status"];
 	      truckItem["latitude"] = truck["latitude"];
 	      truckItem["longitude"] = truck["longitude"];
 

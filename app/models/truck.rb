@@ -1,5 +1,5 @@
 class Truck < ActiveRecord::Base
-  attr_accessible :name, :address, :latitude, :longitude, :facilitytype, :fooditem, :status, :truck_search_id
+  attr_accessible :name, :address, :latitude, :longitude, :facilitytype, :fooditems, :status, :truck_search_id
 
   validates :name, :presence => true
   

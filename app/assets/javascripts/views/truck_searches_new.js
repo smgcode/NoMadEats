@@ -73,16 +73,12 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	  var oneMileLat = 0.0145;
 	  var oneMileLon = 0.0183;
 	  var coordinates = [geoData[0].geometry.location.lat(), geoData[0].geometry.location.lng()];
-	  console.log("coordinates: " + coordinates);
 
 	  boundaries["north"] = coordinates[0] + oneMileLat;
 	  boundaries["east"] = coordinates[1] + oneMileLon;
 	  boundaries["south"] = coordinates[0] - oneMileLat;
 	  boundaries["west"] = coordinates[1] - oneMileLon;
-	  
-	  for (direction in boundaries){
-	    console.log("boundaries[" + direction + "] " + boundaries[direction]);
-	  }
+
 	  return boundaries;
 	},
 

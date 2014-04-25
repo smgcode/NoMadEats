@@ -6,7 +6,8 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	},
 
 	initialize: function (options) {
-    this.map = options.map
+    this.map = options.map,
+    this.places = options.places
 	},
 
 	render: function (){
@@ -26,53 +27,60 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 		var prevSearch = this.collection.where(params);
 
 		if (prevSearch.length == 0) {
-			var newTruckSearch = new FoodTruckFinder.Models.TruckSearch(params);
-			var that = this;
-			newTruckSearch.save({}, {
-				success: function () {
-					FoodTruckFinder.Collections.truckSearches.add(newTruckSearch);
-					that.codeAddress(params.search);
-				}
-			});
+			this.codeAddress(params);
+
 		} else {
 			Backbone.history.navigate("truck_searches/" + prevSearch[0].get("id"), { trigger: true});
 		}
 	},
 
-	  // Google Maps API geocoding: turns an address into a gps coordinate
-  codeAddress: function (address) {
+  // Google Maps API geocoding: turns an address into a gps coordinate
+  codeAddress: function (params) {
     var geocoder = new google.maps.Geocoder();
     var that = this;
     var marker;
     var boundaries;
-    var list;
-    geocoder.geocode( { 'address': address }, function(results, status) {
+
+    geocoder.geocode( { 'address': params.search }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
+
         that.map.setCenter(results[0].geometry.location);
+        
         if(marker != null){
           marker.setMap(null);
         }
+
         marker = new google.maps.Marker({
             map: that.map,
             position: results[0].geometry.location
         });
+
+	      params.latitude = results[0].geometry.location.lat();
+	      params.longitude = results[0].geometry.location.lng();
+
+				var newTruckSearch = new FoodTruckFinder.Models.TruckSearch(params);
+  			newTruckSearch.save({}, {
+					success: function () {
+						FoodTruckFinder.Collections.truckSearches.add(newTruckSearch);
+		        boundaries = that.getBoundaries([params.latitude, params.longitude]);
+			      that.saveTruckList(boundaries, params.search);
+					}
+				});
+
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
-      boundaries = that.getBoundaries(results);
-      that.saveTruckList(boundaries, address);
     });
   },
 
   // Calculate a box that is one mile in each direction of the geo coded coordinates.
 	// Using a one mile length for walking distance.
-	getBoundaries: function(geoData) {
+	getBoundaries: function(coordinates) {
 	  var boundaries = {};
 	  // one mile is roughly the same for around san francisco which is our dataset. 
 	  // However if we go outside of the city, one mile changes in lat lon. 
 	  var oneMileLat = 0.0145;
 	  var oneMileLon = 0.0183;
-	  var coordinates = [geoData[0].geometry.location.lat(), geoData[0].geometry.location.lng()];
 
 	  boundaries["north"] = coordinates[0] + oneMileLat;
 	  boundaries["east"] = coordinates[1] + oneMileLon;

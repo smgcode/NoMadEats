@@ -1,5 +1,5 @@
 class TruckSearch < ActiveRecord::Base
-  attr_accessible :search
+  attr_accessible :search, :latitude, :longitude
 
   validates :search, :presence => true
 

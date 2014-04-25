@@ -38,6 +38,7 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   		model: truckSearch
   	});
   	$("#search-index").html(showView.render().$el);
+    this.truckSearchesNew();
   }, 
 
   truckMapShow: function() {

@@ -96,8 +96,6 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 
 	  $.getJSON(sodaData, function(trucks){
 	    trucks.forEach( function(truck, idx){
-	    	console.log(truck);
-	    	debugger
 	    	truckItem["name"] = truck["applicant"];
 	      truckItem["address"] = truck["address"];
 	      truckItem["facilitytype"] = truck["facilitytype"];

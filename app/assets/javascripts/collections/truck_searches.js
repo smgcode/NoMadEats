@@ -2,6 +2,10 @@ window.FoodTruckFinder.Collections.TruckSearches = Backbone.Collection.extend({
   url: "/truck_searches",
   model: FoodTruckFinder.Models.TruckSearch,
 
+  comparator: function (truck) {
+    return -truck.get("id");
+  },
+
   getOrFetch: function (id) {
   	var model;
   	var truckSearches = this;

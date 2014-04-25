@@ -92,7 +92,7 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	    boundaries["west"] + "," +
 	    boundaries["south"] + "," + 
 	    boundaries["east"] + ")"; 
-    var truckSearchId = FoodTruckFinder.Collections.truckSearches.last().get("id")
+    var truckSearchId = FoodTruckFinder.Collections.truckSearches.first().get("id")
 
 	  $.getJSON(sodaData, function(trucks){
 	    trucks.forEach( function(truck, idx){
@@ -109,7 +109,7 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	      var newTruck = new FoodTruckFinder.Models.Truck(truckItem)
 	      newTruck.save({}, {
 	      	success: function () {
-	      		FoodTruckFinder.Collections.truckSearches.last().trucks().add(newTruck);
+	      		FoodTruckFinder.Collections.truckSearches.first().trucks().add(newTruck);
 	      	}
 	      })
 	    });

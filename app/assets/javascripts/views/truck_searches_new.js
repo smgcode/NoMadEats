@@ -6,8 +6,7 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	},
 
 	initialize: function (options) {
-    this.map = options.map,
-    this.places = options.places
+    this.map = options.map
 	},
 
 	render: function (){
@@ -43,18 +42,6 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 
     geocoder.geocode( { 'address': params.search }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-
-        that.map.setCenter(results[0].geometry.location);
-        
-        if(marker != null){
-          marker.setMap(null);
-        }
-
-        marker = new google.maps.Marker({
-            map: that.map,
-            position: results[0].geometry.location
-        });
-
 	      params.latitude = results[0].geometry.location.lat();
 	      params.longitude = results[0].geometry.location.lng();
 

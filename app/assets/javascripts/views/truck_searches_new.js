@@ -82,7 +82,8 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	saveTruckList: function(boundaries, address){
 		var truckItem = {}
 		var that = this;
-	  var sodaData = "http://data.sfgov.org/resource/rqzj-sfat.json?$limit=10&$where=within_box(location," + 
+	  // var sodaData = "http://data.sfgov.org/resource/rqzj-sfat.json?$limit=10&$where=within_box(location," + 
+	  var sodaData = "http://data.sfgov.org/resource/rqzj-sfat.json?$where=within_box(location," + 
 	    boundaries["north"] + "," +
 	    boundaries["west"] + "," +
 	    boundaries["south"] + "," + 
@@ -101,12 +102,14 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 
 	      truckItem["truck_search_id"] = truckSearchId
 
-	      var newTruck = new FoodTruckFinder.Models.Truck(truckItem)
-	      newTruck.save({}, {
-	      	success: function () {
-	      		FoodTruckFinder.Collections.truckSearches.first().trucks().add(newTruck);
-	      	}
-	      })
+	      if (truckItem["status"] == "APPROVED" && truckItem["facilitytype"] == "Truck") {
+		      var newTruck = new FoodTruckFinder.Models.Truck(truckItem)
+		      newTruck.save({}, {
+		      	success: function () {
+		      		FoodTruckFinder.Collections.truckSearches.first().trucks().add(newTruck);
+		      	}
+		      });
+		    }
 	    });
 	  }).done(function( json ) {
 		  Backbone.history.navigate("truck_searches/" + truckSearchId, { trigger: true});

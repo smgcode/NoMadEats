@@ -1,9 +1,9 @@
 window.FoodTruckFinder.Views.TrucksShow = Backbone.View.extend({
   template: JST["trucks/show"],
 
-  events: {
-  	"click button.destroy": "destroy"
-  },
+  // events: {
+  // 	"click button.destroy": "destroy"
+  // },
 
   render: function () {
   	var renderedContent = this.template({
@@ -15,7 +15,7 @@ window.FoodTruckFinder.Views.TrucksShow = Backbone.View.extend({
   	return this;
   },
 
-  destroy: function() {
-  	this.model.destroy();
-  }
+  // destroy: function() {
+  // 	this.model.destroy();
+  // }
 });

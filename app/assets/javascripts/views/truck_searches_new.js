@@ -66,8 +66,8 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	  var boundaries = {};
 	  // one mile is roughly the same for around san francisco which is our dataset. 
 	  // However if we go outside of the city, one mile changes in lat lon. 
-	  var oneMileLat = 0.0145;
-	  var oneMileLon = 0.0183;
+	  var oneMileLat = 0.0145/2.0;
+	  var oneMileLon = 0.0183/2.0;
 
 	  boundaries["north"] = coordinates[0] + oneMileLat;
 	  boundaries["east"] = coordinates[1] + oneMileLon;

@@ -66,8 +66,8 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	  var boundaries = {};
 	  // one mile is roughly the same for around san francisco which is our dataset. 
 	  // However if we go outside of the city, one mile changes in lat lon. 
-	  var oneMileLat = 0.0145/2.0;
-	  var oneMileLon = 0.0183/2.0;
+	  var oneMileLat = 0.0145/4.0;
+	  var oneMileLon = 0.0183/4.0;
 
 	  boundaries["north"] = coordinates[0] + oneMileLat;
 	  boundaries["east"] = coordinates[1] + oneMileLon;
@@ -82,13 +82,12 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	saveTruckList: function(boundaries, address){
 		var truckItem = {}
 		var that = this;
-	  // var sodaData = "http://data.sfgov.org/resource/rqzj-sfat.json?$limit=10&$where=within_box(location," + 
-	  var sodaData = "http://data.sfgov.org/resource/rqzj-sfat.json?$where=within_box(location," + 
+	  var sodaData = "http://data.sfgov.org/resource/rqzj-sfat.json?facilitytype=truck&status=approved&$limit=20&$where=within_box(location," + 
 	    boundaries["north"] + "," +
 	    boundaries["west"] + "," +
 	    boundaries["south"] + "," + 
-	    boundaries["east"] + ")"; 
-    var truckSearchId = FoodTruckFinder.Collections.truckSearches.first().get("id")
+	    boundaries["east"] + ")";
+    var truckSearchId = FoodTruckFinder.Collections.truckSearches.first().get("id");
 
 	  $.getJSON(sodaData, function(trucks){
 	    trucks.forEach( function(truck, idx){
@@ -103,14 +102,12 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 
 	      truckItem["truck_search_id"] = truckSearchId
 
-	      if (truckItem["status"] == "APPROVED" && truckItem["facilitytype"] == "Truck") {
-		      var newTruck = new FoodTruckFinder.Models.Truck(truckItem)
-		      newTruck.save({}, {
-		      	success: function () {
-		      		FoodTruckFinder.Collections.truckSearches.first().trucks().add(newTruck);
-		      	}
-		      });
-		    }
+	      var newTruck = new FoodTruckFinder.Models.Truck(truckItem)
+	      newTruck.save({}, {
+	      	success: function () {
+	      		FoodTruckFinder.Collections.truckSearches.first().trucks().add(newTruck);
+	      	}
+	      });
 	    });
 	  }).done(function( json ) {
 		  Backbone.history.navigate("truck_searches/" + truckSearchId, { trigger: true});

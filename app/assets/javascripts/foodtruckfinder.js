@@ -9,7 +9,7 @@ window.FoodTruckFinder = {
     
     var map = new google.maps.Map($('#map_canvas')[0], {
       center: new google.maps.LatLng(37.7822346, -122.4103306),
-      zoom: 14,
+      zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     

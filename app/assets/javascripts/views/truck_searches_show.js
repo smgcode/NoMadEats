@@ -3,7 +3,6 @@ window.FoodTruckFinder.Views.TruckSearchesShow = Backbone.View.extend({
 
   initialize: function (options) {
     this.map = options.map;
-    this.places = options.places;
     this.markerCollectionView = options.markerCollectionView;
   	this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.trucks(), "sync remove", this.render);

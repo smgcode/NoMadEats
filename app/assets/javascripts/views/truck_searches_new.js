@@ -99,6 +99,7 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	      truckItem["status"] = truck["status"];
 	      truckItem["latitude"] = truck["latitude"];
 	      truckItem["longitude"] = truck["longitude"];
+	      truckItem["schedule"] = truck["schedule"];
 
 	      truckItem["truck_search_id"] = truckSearchId
 

@@ -8,8 +8,10 @@ window.FoodTruckFinder.Views.TruckShow = Backbone.View.extend({
 
   render: function () {
   	this.markerCollectionView.closeChildren();
+    var truckId = this.model.get("truck_search_id");
   	var renderedContent = this.template({
-  		truck: this.model
+  		truck: this.model,
+      truckId: truckId,
   	});
 
   	this.$el.html(renderedContent);

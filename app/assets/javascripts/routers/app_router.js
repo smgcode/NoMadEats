@@ -15,6 +15,9 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   content: function () {
     this.truckSearchesIndex();
     this.truckSearchesNew();
+    this.markerCollectionView.closeChildren();
+    var location = new google.maps.LatLng(37.7822346, -122.4103306);
+    this.map.setCenter(location);
   },
 
   truckSearchesIndex: function() {

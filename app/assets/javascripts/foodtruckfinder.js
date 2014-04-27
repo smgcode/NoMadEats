@@ -18,6 +18,9 @@ window.FoodTruckFinder = {
       map: map
     });
 
+    markerCollectionView.render();
+
+
   	new FoodTruckFinder.Routers.AppRouter({
       places: places,
       map: map,

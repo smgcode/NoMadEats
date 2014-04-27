@@ -15,7 +15,6 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   content: function () {
     this.truckSearchesIndex();
     this.truckSearchesNew();
-    this.markerCollectionView.render();
   },
 
   truckSearchesIndex: function() {

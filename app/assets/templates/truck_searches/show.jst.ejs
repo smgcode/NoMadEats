@@ -1,4 +1,9 @@
-<h3><%= truckSearch.get("search") %></h3>
+<h3>
+  <%= truckSearch.get("search") %>
+</h3>
+<p>
+	<%= _.size(truckSearch.trucks()) %> trucks found.
+</p>
 <a href="#/">Back to recent searches</a>
 <ul class="trucks">
 </ul>

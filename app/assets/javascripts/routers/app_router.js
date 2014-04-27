@@ -47,10 +47,13 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
 
   truckShow: function (id) {
     var truck = new FoodTruckFinder.Models.Truck({ id: id });
+    var that = this;
     truck.fetch({
       success: function() {
         var showView = new FoodTruckFinder.Views.TruckShow({
-          model: truck
+          model: truck,
+          map: that.map,
+          markerCollectionView: that.markerCollectionView
         });
         $("#search-index").html(showView.render().$el);
       }

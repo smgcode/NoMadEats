@@ -6,7 +6,8 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	},
 
 	initialize: function (options) {
-    this.map = options.map
+    this.map = options.map,
+    this.sanFranciscoBounds = options.sanFranciscoBounds
 	},
 
 	render: function (){
@@ -40,7 +41,10 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
     var marker;
     var boundaries;
 
-    geocoder.geocode( { 'address': params.search }, function(results, status) {
+    geocoder.geocode({
+  	'address': params.search,
+  	'bounds': this.sanFranciscoBounds
+  	}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
 	      params.latitude = results[0].geometry.location.lat();
 	      params.longitude = results[0].geometry.location.lng();

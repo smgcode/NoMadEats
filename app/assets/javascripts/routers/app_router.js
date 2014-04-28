@@ -9,7 +9,8 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   initialize: function(options) {
     this.places = options.places,
     this.map = options.map,
-    this.markerCollectionView = options.markerCollectionView
+    this.markerCollectionView = options.markerCollectionView,
+    this.sanFranciscoBounds = options.sanFranciscoBounds
   },
 
   content: function () {
@@ -32,6 +33,7 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   	var newView = new FoodTruckFinder.Views.TruckSearchesNew({
       collection: FoodTruckFinder.Collections.truckSearches,
       map: this.map,
+      sanFranciscoBounds: this.sanFranciscoBounds
     });
   	$("#new-search").html(newView.render().$el);
   },

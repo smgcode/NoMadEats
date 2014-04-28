@@ -18,13 +18,17 @@ window.FoodTruckFinder = {
       map: map
     });
 
-    markerCollectionView.render();
+    var sw = new google.maps.LatLng(37.6940, -122.5537);
+    var ne = new google.maps.LatLng(37.8424, -122.3553);
+    var sanFranciscoBounds = new google.maps.LatLngBounds(sw, ne);
 
+    markerCollectionView.render();
 
   	new FoodTruckFinder.Routers.AppRouter({
       places: places,
       map: map,
       markerCollectionView: markerCollectionView
+      sanFranciscoBounds: sanFranciscoBounds
     });
 
   	Backbone.history.start();

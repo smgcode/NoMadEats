@@ -27,7 +27,7 @@ window.FoodTruckFinder = {
   	new FoodTruckFinder.Routers.AppRouter({
       places: places,
       map: map,
-      markerCollectionView: markerCollectionView
+      markerCollectionView: markerCollectionView,
       sanFranciscoBounds: sanFranciscoBounds
     });
 

@@ -11,11 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.serializejson
+//= require jquery.serializejson.min
 //= require jquery_ujs
-//= require underscore
-//= require backbone
-//= require backbone.googlemaps
+//= require underscore-min
+//= require backbone-min
+//= require backbone.googlemaps-min
 //= require foodtruckfinder
 //= require_tree ./models
 //= require_tree ./collections

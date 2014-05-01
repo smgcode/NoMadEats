@@ -1,12 +1,12 @@
 .my_image {
-	background: url("https://lh4.googleusercontent.com/-xbzYW5VcU7Y/TVD7-xgevvI/AAAAAAABVxU/Iq1CnMGjY0g/w1812-h1208-no/IMG_4364.JPG") no-repeat center center fixed;
+	background: url("../images/sflights.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 	position: relative;
 	z-index: 2;
-	max-height: 650px;
+	max-height: 550px;
 }
 
 .my_header {

@@ -54,6 +54,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     multi_json (1.9.2)
+    newrelic_rpm (3.8.0.218)
     pg (0.17.1)
     polyglot (0.3.4)
     rack (1.4.5)
@@ -115,6 +116,7 @@ DEPENDENCIES
   ejs
   jbuilder
   jquery-rails
+  newrelic_rpm
   pg
   rails (= 3.2.13)
   rails_12factor

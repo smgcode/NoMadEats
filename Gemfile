@@ -20,4 +20,4 @@ end
 gem 'ejs'
 gem 'jbuilder'
 gem 'jquery-rails'
-
+gem 'newrelic_rpm'

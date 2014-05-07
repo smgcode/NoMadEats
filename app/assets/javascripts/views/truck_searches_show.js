@@ -3,7 +3,7 @@ window.FoodTruckFinder.Views.TruckSearchesShow = Backbone.View.extend({
 
   initialize: function (options) {
     this.map = options.map;
-    this.markerCollectionView = options.markerCollectionView;
+    this.places = options.places;
   	this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.trucks(), "sync remove", this.render);
   },
@@ -21,7 +21,7 @@ window.FoodTruckFinder.Views.TruckSearchesShow = Backbone.View.extend({
 
   renderTruckList: function() {
     var that = this;
-    this.markerCollectionView.closeChildren();
+    this.places.reset();
     this.model.trucks().each(function (truck){
       var trucksShowView = new FoodTruckFinder.Views.TrucksShow({
         model: truck
@@ -46,6 +46,6 @@ window.FoodTruckFinder.Views.TruckSearchesShow = Backbone.View.extend({
       lat: truck.get("latitude"),
       lng: truck.get("longitude")
     });
-    this.markerCollectionView.addChild(marker);
+    this.places.add(marker);
   }
 });

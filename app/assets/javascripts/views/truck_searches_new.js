@@ -6,7 +6,6 @@ window.FoodTruckFinder.Views.TruckSearchesNew = Backbone.View.extend({
 	},
 
 	initialize: function (options) {
-    this.map = options.map,
     this.sanFranciscoBounds = options.sanFranciscoBounds
 	},
 

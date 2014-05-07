@@ -3,11 +3,10 @@ window.FoodTruckFinder.Views.TruckShow = Backbone.View.extend({
 
   initialize: function (options) {
   	this.map = options.map;
-		this.markerCollectionView = options.markerCollectionView;
+    this.places = options.places;
   },
 
   render: function () {
-  	this.markerCollectionView.closeChildren();
     var truckId = this.model.get("truck_search_id");
   	var renderedContent = this.template({
   		truck: this.model,
@@ -17,6 +16,7 @@ window.FoodTruckFinder.Views.TruckShow = Backbone.View.extend({
   	this.$el.html(renderedContent);
 
     this.renderMap();
+    this.places.reset();
     this.updateMarker(this.model);
 
   	return this;
@@ -37,7 +37,7 @@ window.FoodTruckFinder.Views.TruckShow = Backbone.View.extend({
       lat: truck.get("latitude"),
       lng: truck.get("longitude")
     });
-    this.markerCollectionView.addChild(marker);
+    this.places.add(marker);
   }
 
 });

@@ -8,6 +8,7 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
 
   initialize: function() {
     this.initMap();
+    this.mapShow();
     this.truckSearchesNew();
   },
 
@@ -19,20 +20,22 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-    this.markerCollectionView = new Backbone.GoogleMaps.MarkerCollectionView({
-      collection: this.places,
-      map: this.map
-    });
     var sw = new google.maps.LatLng(37.6940, -122.5537);
     var ne = new google.maps.LatLng(37.8424, -122.3553);
     this.sanFranciscoBounds = new google.maps.LatLngBounds(sw, ne);
+  },
 
-    this.markerCollectionView.render();
+  mapShow: function(){
+    var markerCollectionView = new Backbone.GoogleMaps.MarkerCollectionView({
+      collection: this.places,
+      map: this.map
+    });
+    markerCollectionView.render();
   },
 
   truckSearchesIndex: function() {
-    this.markerCollectionView.closeChildren();
     this.map.setCenter(this.sfCenter);
+    this.places.reset();
   	var indexView = new FoodTruckFinder.Views.TruckSearchesIndex({
   		collection: FoodTruckFinder.Collections.truckSearches
   	});
@@ -54,7 +57,7 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   	var showView = new FoodTruckFinder.Views.TruckSearchesShow({
   		model: truckSearch,
       map: this.map,
-      markerCollectionView: this.markerCollectionView
+      places: this.places
   	});
   	$("#search-index").html(showView.render().$el);
   },
@@ -67,7 +70,7 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
         var showView = new FoodTruckFinder.Views.TruckShow({
           model: truck,
           map: that.map,
-          markerCollectionView: that.markerCollectionView
+          places: that.places
         });
         $("#search-index").html(showView.render().$el);
       }

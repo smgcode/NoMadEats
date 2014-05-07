@@ -6,29 +6,28 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
     "truck/:id": "truckShow"
   },
 
-  initialize: function(options) {
+  initialize: function() {
+    this.initMap();
+    this.truckSearchesNew();
+  },
+
+  initMap: function() {
     this.sfCenter = new google.maps.LatLng(37.7822346, -122.4103306);
-    
     this.places = new Backbone.GoogleMaps.LocationCollection();
-    
     this.map = new google.maps.Map($('#map_canvas')[0], {
       center: this.sfCenter,
       zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
-    
     this.markerCollectionView = new Backbone.GoogleMaps.MarkerCollectionView({
       collection: this.places,
       map: this.map
     });
-
     var sw = new google.maps.LatLng(37.6940, -122.5537);
     var ne = new google.maps.LatLng(37.8424, -122.3553);
     this.sanFranciscoBounds = new google.maps.LatLngBounds(sw, ne);
 
     this.markerCollectionView.render();
-    this.truckSearchesNew();
-
   },
 
   truckSearchesIndex: function() {

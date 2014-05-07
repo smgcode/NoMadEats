@@ -1,27 +1,39 @@
 window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   routes: {
-  	"": "content",
+  	"": "truckSearchesIndex",
   	"truck_searches/new": "truckSearchNew",
   	"truck_searches/:id": "truckSearchShow",
     "truck/:id": "truckShow"
   },
 
   initialize: function(options) {
-    this.places = options.places,
-    this.map = options.map,
-    this.markerCollectionView = options.markerCollectionView,
-    this.sanFranciscoBounds = options.sanFranciscoBounds
-    this.truckSearchesNew();
-  },
+    this.sfCenter = new google.maps.LatLng(37.7822346, -122.4103306);
+    
+    this.places = new Backbone.GoogleMaps.LocationCollection();
+    
+    this.map = new google.maps.Map($('#map_canvas')[0], {
+      center: this.sfCenter,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    
+    this.markerCollectionView = new Backbone.GoogleMaps.MarkerCollectionView({
+      collection: this.places,
+      map: this.map
+    });
 
-  content: function () {
-    this.truckSearchesIndex();
-    this.markerCollectionView.closeChildren();
-    var location = new google.maps.LatLng(37.7822346, -122.4103306);
-    this.map.setCenter(location);
+    var sw = new google.maps.LatLng(37.6940, -122.5537);
+    var ne = new google.maps.LatLng(37.8424, -122.3553);
+    this.sanFranciscoBounds = new google.maps.LatLngBounds(sw, ne);
+
+    this.markerCollectionView.render();
+    this.truckSearchesNew();
+
   },
 
   truckSearchesIndex: function() {
+    this.markerCollectionView.closeChildren();
+    this.map.setCenter(this.sfCenter);
   	var indexView = new FoodTruckFinder.Views.TruckSearchesIndex({
   		collection: FoodTruckFinder.Collections.truckSearches
   	});

@@ -11,11 +11,11 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
     this.map = options.map,
     this.markerCollectionView = options.markerCollectionView,
     this.sanFranciscoBounds = options.sanFranciscoBounds
+    this.truckSearchesNew();
   },
 
   content: function () {
     this.truckSearchesIndex();
-    this.truckSearchesNew();
     this.markerCollectionView.closeChildren();
     var location = new google.maps.LatLng(37.7822346, -122.4103306);
     this.map.setCenter(location);
@@ -46,7 +46,6 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
       markerCollectionView: this.markerCollectionView
   	});
   	$("#search-index").html(showView.render().$el);
-    this.truckSearchesNew();
   },
 
   truckShow: function (id) {
@@ -62,8 +61,6 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
         $("#search-index").html(showView.render().$el);
       }
     });
-
-    this.truckSearchesNew();
   }
 
 });

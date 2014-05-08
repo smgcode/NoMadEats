@@ -26,7 +26,7 @@ window.FoodTruckFinder.Routers.AppRouter = Backbone.Router.extend({
   },
 
   mapShow: function(){
-    var markerCollectionView = new Backbone.GoogleMaps.MarkerCollectionView({
+    var markerCollectionView = new FoodTruckFinder.Views.MarkerCollectionView({
       collection: this.places,
       map: this.map
     });
